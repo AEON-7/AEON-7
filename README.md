@@ -27,11 +27,49 @@ Everything below is **public, MIT/Apache-licensed, and reproducible** — Docker
 |---|---|---|
 | **[comfyui-aeon-spark](https://github.com/AEON-7/comfyui-aeon-spark)** | Bleeding-edge ComfyUI for DGX Spark (CUDA 13 + SageAttention v3 + NVFP4 + 14 custom-node packs + Flux 2 Dev / LTX 2.3 22B / ACE-Step v1.5 XL Turbo pre-bundled). Foundation for every other repo in this section. | ![](https://img.shields.io/github/stars/AEON-7/comfyui-aeon-spark?style=flat&label=) |
 | **[aeon-music-maker](https://github.com/AEON-7/aeon-music-maker)** | ACE Step 1.5 XL music generation with dynamics-preserving mastering chain (HPF → EQ → tape sat → LUFS gain-match → true-peak ceiling). FLAC-lossless output, auto-detected mastering presets, CLI-driven. | ![](https://img.shields.io/github/stars/AEON-7/aeon-music-maker?style=flat&label=) |
-| **[aeon-radio-drama](https://github.com/AEON-7/aeon-radio-drama)** | Full-pipeline radio drama / audiobook production — dialogue (Qwen3-TTS) + music (ACE Step) + SFX (MMAudio / Stable Audio Open / ACE) + sidechain mix in one command. Three-Lock voice persistence. | ![](https://img.shields.io/github/stars/AEON-7/aeon-radio-drama?style=flat&label=) |
-| **[aeon-music-video](https://github.com/AEON-7/aeon-music-video)** | Audio-reactive music video builder. librosa-driven beat / onset / RMS / spectral-centroid detection drives ffmpeg filter chains for synced visual effects. CPU-only — no GPU required. | ![](https://img.shields.io/github/stars/AEON-7/aeon-music-video?style=flat&label=) |
-| **[aeon-movie-maker](https://github.com/AEON-7/aeon-movie-maker)** | Fast cinematic video via LTX 2.3 22B. Single clips, full screenplays with character continuity (last-frame carry-forward + per-character seed offsets), and sidechain-mixed final cuts. | ![](https://img.shields.io/github/stars/AEON-7/aeon-movie-maker?style=flat&label=) |
+| **[aeon-radio-drama](https://github.com/AEON-7/aeon-radio-drama)** | Full-pipeline radio drama / audiobook production — dialogue (Qwen3-TTS) + music (ACE Step) + SFX (MMAudio / Stable Audio Open / ACE) + sidechain mix in one command. Three-Lock voice persistence. Bundles standalone `music_maker.py` + `sfx_maker.py` for one-shot music or SFX generation. | ![](https://img.shields.io/github/stars/AEON-7/aeon-radio-drama?style=flat&label=) |
+| **[aeon-music-video](https://github.com/AEON-7/aeon-music-video)** | Audio-reactive music video builder. librosa-driven beat / onset / RMS / spectral-centroid detection drives ffmpeg filter chains for synced visual effects. CPU-only — no GPU, no ComfyUI, no model downloads required. | ![](https://img.shields.io/github/stars/AEON-7/aeon-music-video?style=flat&label=) |
+| **[aeon-movie-maker](https://github.com/AEON-7/aeon-movie-maker)** | Fast cinematic video via LTX 2.3 22B. Single clips, full screenplays with character continuity (last-frame carry-forward + per-character seed offsets), and sidechain-mixed final cuts. CLI-tunable LoRA strengths + saturation troubleshooting guide. | ![](https://img.shields.io/github/stars/AEON-7/aeon-movie-maker?style=flat&label=) |
 
-Each repo ships with `SKILL.md` + `AGENTS.md` for drop-in agent integration, `setup.sh` / `sync.sh` for installation, `.env.example` for config, and full attribution to upstream model creators.
+### What every AEON Media Production repo ships with
+
+| File | What it is |
+|---|---|
+| `README.md` | Quick start, configuration table, local-vs-remote ComfyUI execution modes, env-var reference, model-installation paths |
+| `AGENTS.md` | Step-0 execution-mode detection guide for AI agents, invocation contract, recovery patterns |
+| `SKILL.md` | Full prompt-engineering recipes, troubleshooting decision trees, the canonical agent skill definition |
+| `ATTRIBUTION.md` | Upstream credits — every model, library, and custom node properly attributed |
+| `.env.example` | Verbose, self-documenting — every variable has inline instructions on where to get values (HF tokens, Civitai tokens, ComfyUI URL patterns) |
+| `setup.sh` | First-time install — validates ComfyUI reachability, installs Python deps, inventories model files, prints download commands for missing pieces |
+| `sync.sh` | Incremental update — diff preview, auto-stash local edits, ff-only pull, refresh deps, re-run model check. Supports `--dry-run` / `--yes` / `--no-models` |
+| `.gitignore` | Standard — never commits `output/`, `models/`, `.env`, `__pycache__`, etc. |
+| `LICENSE` | MIT |
+
+### Lifecycle (every repo, same pattern)
+
+```
+git clone https://github.com/AEON-7/<repo>     →   ./setup.sh        →   start using
+                                                       │
+                                                       ▼
+                                              copy .env.example → .env
+                                              edit COMFYUI_URL etc.
+                                                       │
+                                                       ▼
+                                          python scripts/<tool>.py ...
+                                                       │
+                            (later, when upstream updates) ▼
+                                                ./sync.sh
+                                              (preview → confirm → pull → refresh)
+```
+
+### Local vs remote ComfyUI
+
+Every tool that uses ComfyUI supports two execution modes, documented per-repo:
+
+- **Mode A — Local**: CLI runs on the same machine as ComfyUI. Just `python scripts/<tool>.py ...`.
+- **Mode B — Remote**: ComfyUI on a GPU box (DGX Spark, headless server). Either invoke the CLI over SSH (`ssh user@gpu-host 'cd repo && python ...'`) or hit the remote ComfyUI HTTP API directly via SSH tunnel or `--listen 0.0.0.0`.
+
+`aeon-movie-maker` has additional constraints documented (I2V + screenplay carry-forward needs filesystem-level access — pure HTTP-only remote works for T2V single clips only).
 
 ---
 
