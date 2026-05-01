@@ -115,16 +115,36 @@ Each repo ships with `SKILL.md` + `AGENTS.md` for drop-in agent integration, `se
 
 ## ☕ Support the work
 
-If any of these releases have been useful to you, tips are deeply appreciated — they go directly toward more compute, more models, and more open releases. Click any address below to copy.
+If any of these releases have been useful to you, tips are deeply appreciated — they go directly toward more compute, more models, and more open releases. **Scan a QR with your wallet, or click any address below to copy.**
 
-| Currency |  | Address |
-|---|---|---|
-| **Bitcoin** (BTC) | ₿ | `bc1q09xmzn00q4z3c5raene0f3pzn9d9pvawfm0py4` |
-| **Ethereum** (ETH) | Ξ | `0x1512667F6D61454ad531d2E45C0a5d1fd82D0500` |
-| **Solana** (SOL) | ◎ | `DgQsjHdAnT5PNLQTNpJdpLS3tYGpVcsHQCkpoiAKsw8t` |
-| **Monero** (XMR) | ⓜ | `836XrSKw4R76vNi3QPJ5Fa9ugcyvE2cWmKSPv3AhpTNNKvqP8v5ba9JRL4Vh7UnFNjDz3E2GXZDVVenu3rkZaNdUFhjAvgd` |
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>₿ Bitcoin (BTC)</strong><br/>
+      <img src="assets/qr/btc.png" alt="BTC QR" width="200"/><br/>
+      <sub><code>bc1q09xmzn00q4z3c5raene0f3pzn9d9pvawfm0py4</code></sub>
+    </td>
+    <td align="center" width="50%">
+      <strong>Ξ Ethereum (ETH)</strong><br/>
+      <img src="assets/qr/eth.png" alt="ETH QR" width="200"/><br/>
+      <sub><code>0x1512667F6D61454ad531d2E45C0a5d1fd82D0500</code></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>◎ Solana (SOL)</strong><br/>
+      <img src="assets/qr/sol.png" alt="SOL QR" width="200"/><br/>
+      <sub><code>DgQsjHdAnT5PNLQTNpJdpLS3tYGpVcsHQCkpoiAKsw8t</code></sub>
+    </td>
+    <td align="center" width="50%">
+      <strong>ⓜ Monero (XMR)</strong><br/>
+      <img src="assets/qr/xmr.png" alt="XMR QR" width="200"/><br/>
+      <sub><code>836XrSKw4R76vNi3QPJ5Fa9ugcyvE2cWmKSPv3AhpTNNKvqP8v5ba9JRL4Vh7UnFNjDz3E2GXZDVVenu3rkZaNdUFhjAvgd</code></sub>
+    </td>
+  </tr>
+</table>
 
-Tokens on EVM-compatible L2s (Base, Arbitrum, Optimism, Polygon, etc.) can be sent to the same Ethereum address.
+> **Ethereum L2s (Base, Arbitrum, Optimism, Polygon, etc.) and EVM-compatible tokens** can be sent to the same Ethereum address.
 
 ---
 
