@@ -113,6 +113,21 @@ Each repo ships with `SKILL.md` + `AGENTS.md` for drop-in agent integration, `se
 
 ---
 
+## ☕ Support the work
+
+If any of these releases have been useful to you, tips are deeply appreciated — they go directly toward more compute, more models, and more open releases. Click any address below to copy.
+
+| Currency |  | Address |
+|---|---|---|
+| **Bitcoin** (BTC) | ₿ | `bc1q09xmzn00q4z3c5raene0f3pzn9d9pvawfm0py4` |
+| **Ethereum** (ETH) | Ξ | `0x1512667F6D61454ad531d2E45C0a5d1fd82D0500` |
+| **Solana** (SOL) | ◎ | `DgQsjHdAnT5PNLQTNpJdpLS3tYGpVcsHQCkpoiAKsw8t` |
+| **Monero** (XMR) | ⓜ | `836XrSKw4R76vNi3QPJ5Fa9ugcyvE2cWmKSPv3AhpTNNKvqP8v5ba9JRL4Vh7UnFNjDz3E2GXZDVVenu3rkZaNdUFhjAvgd` |
+
+Tokens on EVM-compatible L2s (Base, Arbitrum, Optimism, Polygon, etc.) can be sent to the same Ethereum address.
+
+---
+
 ## 🤝 Get in touch
 
 - 🌐 Open an issue on any repo for questions, bug reports, or feature requests
