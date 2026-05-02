@@ -73,6 +73,33 @@ Every tool that uses ComfyUI supports two execution modes, documented per-repo:
 
 ---
 
+## 🎙️ Voice — real-time speech AI for DGX Spark
+
+> Three composable sidecars that turn any DGX Spark into a real-time voice agent host. Pair two OpenAI-compatible audio endpoints (TTS + ASR) with the Matrix WebRTC bridge to dial your AI directly from any Matrix client. **End-to-end voice turn: ~2.1 s on Spark.**
+
+| Repo | What it does | ★ |
+|---|---|---|
+| **[qwen3-tts-server](https://github.com/AEON-7/qwen3-tts-server)** | OpenAI-compatible `/v1/audio/speech` server backed by Qwen3-TTS-12Hz-1.7B-VoiceDesign. CUDA + bf16 + flash-attn 2 (sm_120 wheel). **RTF 1.30× hot path** (1.48 s synthesis for ~2 s of speech). Pre-built ghcr image, deploy scripts covering 5 model variants (VoiceDesign / CustomVoice / Base @ 1.7B & 0.6B). | ![](https://img.shields.io/github/stars/AEON-7/qwen3-tts-server?style=flat&label=) |
+| **[qwen3-asr-server](https://github.com/AEON-7/qwen3-asr-server)** | OpenAI-compatible `/v1/audio/transcriptions` server — Qwen3-ASR-0.6B served by vLLM. 30 spoken languages + 22 zh dialects. **RTF 16× hot path** (120 ms transcription for 2 s of audio). Pre-built ghcr image, deploy scripts for 0.6B / 1.7B variants. | ![](https://img.shields.io/github/stars/AEON-7/qwen3-asr-server?style=flat&label=) |
+| **[matrix-voip-agent](https://github.com/AEON-7/matrix-voip-agent)** | Headless Matrix WebRTC voice agent — auto-answers VoIP calls and bridges audio to any AI agent via PipeWire. The recommended bridge for AI-on-Matrix-VoIP: combine with any Matrix homeserver (Synapse / Conduit) and the two sidecars above to dial your AI directly from any Matrix client. | ![](https://img.shields.io/github/stars/AEON-7/matrix-voip-agent?style=flat&label=) |
+
+### Recommended pairing — full voice-AI stack on a single Spark
+
+The three voice sidecars + the [Qwen3.6-27B AEON Ultimate MTP-XS vLLM main](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash) on one Docker bridge = a complete sub-3-second voice agent. Latency budget (measured, hot path on DGX Spark):
+
+| stage | wall |
+|---|---|
+| inbound RTP packet → matrix-voip-agent | ~5 ms |
+| ASR (1.92 s clip → text) | 120 ms |
+| LLM (Qwen3.6-27B chat completion, ~10 toks) | ~480 ms |
+| TTS (text → 1.92 s WAV) | ~1.48 s |
+| outbound RTP → Matrix client | ~5 ms |
+| **End-to-end voice turn** | **~2.1 s** |
+
+Each repo ships with a `README.md`, `agents.md` (autonomous bring-up runbook), `docs/MODELS.md` (variant catalog), `docs/ARCHITECTURE.md` (full topology), and `docs/INTEGRATIONS.md` (Matrix + OpenAI SDK + OpenWebUI + Home Assistant + raw HTTP).
+
+---
+
 ## 💎 Gemma 4 Models — NVFP4 quantizations for DGX Spark
 
 > Abliterated Gemma 4 deployments at NVFP4 precision (4-bit weights + 8-bit activations) for NVIDIA DGX Spark / Blackwell GPUs. Includes EAGLE speculative-decoding drafters for both base models.
@@ -133,7 +160,6 @@ Every tool that uses ComfyUI supports two execution modes, documented per-repo:
 
 | Repo | What it does | ★ |
 |---|---|---|
-| **[matrix-voip-agent](https://github.com/AEON-7/matrix-voip-agent)** | Headless Matrix WebRTC voice agent — auto-answers VoIP calls and bridges audio to any AI agent via PipeWire. | ![](https://img.shields.io/github/stars/AEON-7/matrix-voip-agent?style=flat&label=) |
 | **[cosmic-mind](https://github.com/AEON-7/cosmic-mind)** | Security-and-resiliency-focused deployment of the Quartz web app. A place to build your second mind and share it. | ![](https://img.shields.io/github/stars/AEON-7/cosmic-mind?style=flat&label=) |
 | **[regex-builder](https://github.com/AEON-7/regex-builder)** | Simple and elegant RegEx builder. | ![](https://img.shields.io/github/stars/AEON-7/regex-builder?style=flat&label=) |
 | **[quartz](https://github.com/AEON-7/quartz)** | Fast batteries-included static-site generator that transforms Markdown into fully functional websites. | ![](https://img.shields.io/github/stars/AEON-7/quartz?style=flat&label=) |
