@@ -1,5 +1,7 @@
 <div align="center">
 
+[![Tips](https://img.shields.io/badge/%E2%98%95_Tips-Support_the_work-ff5e5b?style=flat)](#support-the-work)
+
 # AEON-7
 
 **NVFP4 quantizations · Abliterated LLMs · DGX Spark deployments · AI media production toolchain**
