@@ -161,6 +161,7 @@ Each repo ships with a `README.md`, `agents.md` (autonomous bring-up runbook), `
 
 | Repo | What it does | ★ |
 |---|---|---|
+| **[unifi-ai-network-management](https://github.com/AEON-7/unifi-ai-network-management)** | Agent-ready UniFi / Ubiquiti network management skill and tooling: safe API key setup, backup/restore helpers, OpenClaw + Hermes install paths, and operational playbooks for diagnostics, security events, clients, APs, switches, VLANs, and Wi-Fi automation. | ![](https://img.shields.io/github/stars/AEON-7/unifi-ai-network-management?style=flat&label=) |
 | **[cosmic-mind](https://github.com/AEON-7/cosmic-mind)** | Security-and-resiliency-focused deployment of the Quartz web app. A place to build your second mind and share it. | ![](https://img.shields.io/github/stars/AEON-7/cosmic-mind?style=flat&label=) |
 | **[regex-builder](https://github.com/AEON-7/regex-builder)** | Simple and elegant RegEx builder. | ![](https://img.shields.io/github/stars/AEON-7/regex-builder?style=flat&label=) |
 | **[quartz](https://github.com/AEON-7/quartz)** | Fast batteries-included static-site generator that transforms Markdown into fully functional websites. | ![](https://img.shields.io/github/stars/AEON-7/quartz?style=flat&label=) |
