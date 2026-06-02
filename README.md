@@ -77,13 +77,14 @@ Every tool that uses ComfyUI supports two execution modes, documented per-repo:
 
 ## 🎙️ Voice — real-time speech AI for DGX Spark
 
-> Three composable sidecars that turn any DGX Spark into a real-time voice agent host. Pair two OpenAI-compatible audio endpoints (TTS + ASR) with the Matrix WebRTC bridge to dial your AI directly from any Matrix client. **End-to-end voice turn: ~2.1 s on Spark.**
+> Three composable sidecars that turn any DGX Spark into a real-time voice agent host. Pair two OpenAI-compatible audio endpoints (TTS + ASR) with the Matrix WebRTC bridge to dial your AI directly from any Matrix client — then compose all three into fully-embodied AI **personas** with [create-agentic-personas](https://github.com/AEON-7/create-agentic-personas). **End-to-end voice turn: ~2.1 s on Spark.**
 
 | Repo | What it does | ★ |
 |---|---|---|
 | **[qwen3-tts-server](https://github.com/AEON-7/qwen3-tts-server)** | OpenAI-compatible `/v1/audio/speech` server backed by Qwen3-TTS-12Hz-1.7B-VoiceDesign. CUDA + bf16 + flash-attn 2 (sm_120 wheel). **RTF 1.30× hot path** (1.48 s synthesis for ~2 s of speech). Pre-built ghcr image, deploy scripts covering 5 model variants (VoiceDesign / CustomVoice / Base @ 1.7B & 0.6B). | ![](https://img.shields.io/github/stars/AEON-7/qwen3-tts-server?style=flat&label=) |
 | **[qwen3-asr-server](https://github.com/AEON-7/qwen3-asr-server)** | OpenAI-compatible `/v1/audio/transcriptions` server — Qwen3-ASR-0.6B served by vLLM. 30 spoken languages + 22 zh dialects. **RTF 16× hot path** (120 ms transcription for 2 s of audio). Pre-built ghcr image, deploy scripts for 0.6B / 1.7B variants. | ![](https://img.shields.io/github/stars/AEON-7/qwen3-asr-server?style=flat&label=) |
 | **[matrix-voip-agent](https://github.com/AEON-7/matrix-voip-agent)** | Headless Matrix WebRTC voice agent — auto-answers VoIP calls and bridges audio to any AI agent via PipeWire. The recommended bridge for AI-on-Matrix-VoIP: combine with any Matrix homeserver (Synapse / Conduit) and the two sidecars above to dial your AI directly from any Matrix client. | ![](https://img.shields.io/github/stars/AEON-7/matrix-voip-agent?style=flat&label=) |
+| **[create-agentic-personas](https://github.com/AEON-7/create-agentic-personas)** | Build fully-embodied AI **personas** on OpenClaw + Matrix — each with a chat identity, a knowledge corpus (RAG), a cloned-or-designed Qwen3-TTS voice, and a live WebRTC call line. Composes the three sidecars above into a one-command-per-persona roster builder: secret-free templates, a `new-persona.sh` scaffold, and a `create-agentic-persona` agent skill so an agent can spin up new personas itself. | ![](https://img.shields.io/github/stars/AEON-7/create-agentic-personas?style=flat&label=) |
 
 ### Recommended pairing — full voice-AI stack on a single Spark
 
