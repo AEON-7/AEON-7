@@ -27,7 +27,7 @@ Everything below is **public, MIT/Apache-licensed, and reproducible** — Docker
 | Section | What you'll find there |
 |---|---|
 | [🎬 AEON Media Production](#-aeon-media-production) | Agent-driven media generation — music, radio drama, music videos, cinematic film, and the ComfyUI base stack that powers them |
-| [🎤 Voice and Video AI Stack](#-voice-and-video-ai-stack) | Real-time speech and vision on one DGX Spark — OpenAI-compatible TTS + ASR servers, Matrix VoIP bridge with camera-frame vision for video calls, AI persona builder. **~2.1 s end-to-end voice turns** |
+| [🎤 Voice and Video AI Stack](#-voice-and-video-ai-stack) | Real-time speech and vision on one DGX Spark — OpenAI-compatible streaming TTS + ASR servers, Matrix VoIP bridge with camera-frame vision for video calls, AI persona builder. **Agent starts speaking ~1.0 s into a turn** |
 | [💎 Gemma 4 Models](#-gemma-4-models) | Abliterated Gemma 4 NVFP4 quantizations, EAGLE drafters, and a 3.5×-faster DFlash serving container |
 | [🍎 Apple Silicon MLX](#-apple-silicon-mlx) | Gemma-4-12B AEON Abliterated on M-series Macs — MLX quants + one-paste OpenAI-compatible multimodal server |
 | [🐉 Qwen 3.6 Models](#-qwen-36-models) | The flagship line — lossless-abliterated Qwen 3.6 dense + MoE at NVFP4, production DFlash path and the DDTree research track |
@@ -95,27 +95,29 @@ Every tool that uses ComfyUI supports two execution modes, documented per-repo:
 
 ## 🎤 Voice and Video AI Stack
 
-> Real-time speech and vision AI for DGX Spark. Three composable sidecars turn any Spark into a voice agent host: pair two OpenAI-compatible audio endpoints (TTS + ASR) with the Matrix WebRTC bridge to dial your AI directly from any Matrix client — or **video-call it** and let a vision LLM see through your camera — then compose all three into fully-embodied AI **personas** with [create-agentic-personas](https://github.com/AEON-7/create-agentic-personas). **End-to-end voice turn: ~2.1 s on Spark.**
+> Real-time speech and vision AI for DGX Spark. Three composable sidecars turn any Spark into a voice agent host: pair two OpenAI-compatible audio endpoints (TTS + ASR) with the Matrix WebRTC bridge to dial your AI directly from any Matrix client — or **video-call it** and let a vision LLM see through your camera — then compose all three into fully-embodied AI **personas** with [create-agentic-personas](https://github.com/AEON-7/create-agentic-personas). **With streaming TTS the agent starts speaking ~1.0 s into a turn on Spark** (~2.1 s for a fully-synthesized non-streaming turn).
 
 | Repo | What it does | ★ |
 |---|---|---|
-| **[qwen3-tts-server](https://github.com/AEON-7/qwen3-tts-server)** | OpenAI-compatible `/v1/audio/speech` server backed by Qwen3-TTS-12Hz-1.7B-VoiceDesign. CUDA + bf16 + flash-attn 2 (sm_120 wheel). **RTF 1.30× hot path** (1.48 s synthesis for ~2 s of speech). Pre-built ghcr image, deploy scripts covering 5 model variants (VoiceDesign / CustomVoice / Base @ 1.7B & 0.6B). | ![](https://img.shields.io/github/stars/AEON-7/qwen3-tts-server?style=flat&label=) |
+| **[qwen3-tts-server](https://github.com/AEON-7/qwen3-tts-server)** | OpenAI-compatible `/v1/audio/speech` server for Qwen3-TTS-12Hz-1.7B on the [faster-qwen3-tts](https://github.com/andimarafioti/faster-qwen3-tts) CUDA-graph engine — **streams PCM while generating: first audio ~0.4 s, ~1.7× realtime** (measured on Spark). VoiceDesign + voice-clone (`qwen3-tts-clone`) served side-by-side, plus a `GET /v1/audio/voices` cloned-voice library. | ![](https://img.shields.io/github/stars/AEON-7/qwen3-tts-server?style=flat&label=) |
 | **[qwen3-asr-server](https://github.com/AEON-7/qwen3-asr-server)** | OpenAI-compatible `/v1/audio/transcriptions` server — Qwen3-ASR-0.6B served by vLLM. 30 spoken languages + 22 zh dialects. **RTF 16× hot path** (120 ms transcription for 2 s of audio). Pre-built ghcr image, deploy scripts for 0.6B / 1.7B variants. | ![](https://img.shields.io/github/stars/AEON-7/qwen3-asr-server?style=flat&label=) |
 | **[matrix-voip-agent](https://github.com/AEON-7/matrix-voip-agent)** | Headless Matrix WebRTC voice **and video** agent — auto-answers VoIP calls and bridges audio to any AI agent via PipeWire. Optional video add-on: samples the caller's VP8 camera frames into an in-memory ring (never disk) and gives any vision-capable LLM a per-call `look` tool — video-call your AI and ask "what do you see?" (`VIDEO_ENABLED=true` opt-in). The recommended bridge for AI-on-Matrix-VoIP: combine with any Matrix homeserver (Synapse / Conduit) and the two sidecars above to dial your AI directly from any Matrix client. | ![](https://img.shields.io/github/stars/AEON-7/matrix-voip-agent?style=flat&label=) |
 | **[create-agentic-personas](https://github.com/AEON-7/create-agentic-personas)** | Build fully-embodied AI **personas** on OpenClaw + Matrix — each with a chat identity, a knowledge corpus (RAG), a cloned-or-designed Qwen3-TTS voice, and a live WebRTC call line. Composes the three sidecars above into a one-command-per-persona roster builder: secret-free templates, a `new-persona.sh` scaffold, and a `create-agentic-persona` agent skill so an agent can spin up new personas itself. | ![](https://img.shields.io/github/stars/AEON-7/create-agentic-personas?style=flat&label=) |
 
 ### Recommended pairing — full voice-AI stack on a single Spark
 
-The three voice sidecars + the [Qwen3.6-27B AEON Ultimate MTP-XS vLLM main](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash) on one Docker bridge = a complete sub-3-second voice agent. Latency budget (measured, hot path on DGX Spark):
+The three voice sidecars + the [Qwen3.6-27B AEON Ultimate MTP-XS vLLM main](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash) on one Docker bridge = a complete voice agent that starts speaking in about a second. Latency budget (measured, hot path on DGX Spark, streaming TTS via `VOXTRAL_STREAMING=true`):
 
 | stage | wall |
 |---|---|
 | inbound RTP packet → matrix-voip-agent | ~5 ms |
 | ASR (1.92 s clip → text) | 120 ms |
 | LLM (Qwen3.6-27B chat completion, ~10 toks) | ~480 ms |
-| TTS (text → 1.92 s WAV) | ~1.48 s |
+| TTS time-to-first-audio (streaming) | ~0.4 s |
 | outbound RTP → Matrix client | ~5 ms |
-| **End-to-end voice turn** | **~2.1 s** |
+| **Agent starts speaking** | **~1.0 s** |
+
+Generation sustains ~1.7× realtime, so playback never underruns. Non-streaming (full-WAV synthesis) reference: TTS for a 1.92 s clip is ~1.48 s, putting the end-to-end voice turn at **~2.1 s**.
 
 Each repo ships an autonomous bring-up runbook (`AGENTS.md` / `agents.md`) alongside its `README.md`; the TTS/ASR sidecars additionally ship `docs/MODELS.md` (variant catalog), `docs/ARCHITECTURE.md` (full topology), and `docs/INTEGRATIONS.md` (Matrix + OpenAI SDK + OpenWebUI + Home Assistant + raw HTTP), and matrix-voip-agent ships `docs/FULLY-OFFLINE-VOICE.md` (single-Spark voice stack walkthrough).
 
