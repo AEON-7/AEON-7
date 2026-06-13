@@ -216,6 +216,7 @@ Each repo ships an autonomous bring-up runbook (`AGENTS.md` / `agents.md`) along
 
 | Repo | What it does | ★ |
 |---|---|---|
+| **[presto-cockpit](https://github.com/AEON-7/presto-cockpit)** | A glanceable home-lab dashboard on a Pimoroni Presto (MicroPython touchscreen): live GPU/DGX vitals, OpenClaw agent stats, host resources, crypto, room sensors, a QlockTwo word-clock, and AI news — with rear-LED accent sync. Two optional backends (a Docker GPU-telemetry sidecar + an OpenClaw stats shim) feed 8 swipeable screens; full AGENTS.md setup runbook. | ![](https://img.shields.io/github/stars/AEON-7/presto-cockpit?style=flat&label=) |
 | **[unifi-ai-network-management](https://github.com/AEON-7/unifi-ai-network-management)** | Agent-ready UniFi / Ubiquiti network management skill and tooling: safe API key setup, backup/restore helpers, OpenClaw + Hermes install paths, and operational playbooks for diagnostics, security events, clients, APs, switches, VLANs, and Wi-Fi automation. | ![](https://img.shields.io/github/stars/AEON-7/unifi-ai-network-management?style=flat&label=) |
 | **[cosmic-mind](https://github.com/AEON-7/cosmic-mind)** | Security-and-resiliency-focused deployment of the Quartz web app. A place to build your second mind and share it. | ![](https://img.shields.io/github/stars/AEON-7/cosmic-mind?style=flat&label=) |
 | **[regex-builder](https://github.com/AEON-7/regex-builder)** | Simple and elegant RegEx builder. | ![](https://img.shields.io/github/stars/AEON-7/regex-builder?style=flat&label=) |
