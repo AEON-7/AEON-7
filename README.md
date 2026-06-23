@@ -140,13 +140,16 @@ Each repo ships an autonomous bring-up runbook (`AGENTS.md` / `agents.md`) along
 
 ## 🍎 Apple Silicon MLX
 
-> The AEON catalog comes to the Mac. Metal-accelerated MLX builds of abliterated Gemma 4 — fully multimodal (text + image + audio), OpenAI-compatible, running host-native on any M-series machine. No CUDA required, no Docker GPU passthrough games.
+> The AEON catalog comes to the Mac. Metal-accelerated MLX builds of abliterated Gemma 4 and Qwen 3.6 — fully multimodal (text + image + audio), OpenAI-compatible, running host-native on any M-series machine. No CUDA required, no Docker GPU passthrough games.
 
 | Repo | What it does | ★ |
 |---|---|---|
 | **[gemma4-aeon-abliterated-mlx-toolkit](https://github.com/AEON-7/gemma4-aeon-abliterated-mlx-toolkit)** | Apple-Silicon toolkit + OpenAI-compatible server for the Gemma-4-12B AEON Abliterated MLX quant grid: near-lossless **MLX-8bit (13.4 GB)** flagship and compact **MLXFP4 (9.3 GB)** for 16 GB Macs. One-paste `uv` quickstart boots a multimodal `mlx_vlm.server` on a fresh Mac — verified image description **and** speech transcription through the API. Optional MTP speculative decoding (~1.1–1.2× faster, output-identical). Benchmarked on M4 Pro 48 GB. | ![](https://img.shields.io/github/stars/AEON-7/gemma4-aeon-abliterated-mlx-toolkit?style=flat&label=) |
+| **[Qwen3.6-27B-AEON-Ultimate-Uncensored-MLX](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-MLX)** | The flagship Qwen 3.6 27B comes to the Mac. Native MLX/Metal quants of the AEON Ultimate Uncensored line: **MLX-8bit (29.5 GB)** max-fidelity flagship + compact **MLX-FP4 (16 GB)** for 24 GB Macs, plus a native **MTP drafter** for up to **1.78x lossless** self-speculation. Selective quant keeps the Gated-DeltaNet SSM, vision tower, and MTP head in BF16 — fully multimodal. Per-category benchmarks + 0-to-hero `uv` quickstart. | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-MLX?style=flat&label=) |
 
 **Grab the weights:** [🤗 MLX-8bit](https://huggingface.co/AEON-7/Gemma-4-12B-it-AEON-Abliterated-MLX-8bit) · [🤗 MLXFP4](https://huggingface.co/AEON-7/Gemma-4-12B-it-AEON-Abliterated-MLXFP4) · [🤗 K4-BF16 source](https://huggingface.co/AEON-7/Gemma-4-12B-it-AEON-Abliterated-K4-BF16)
+
+**Qwen 3.6 MLX weights:** [🤗 MLX-8bit](https://huggingface.co/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-Multimodal-MLX-8bit) · [🤗 MLX-FP4](https://huggingface.co/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-Multimodal-MLX-FP4) · [🤗 MTP-Drafter](https://huggingface.co/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-MLX-MTP-Drafter)
 
 ---
 
@@ -159,6 +162,7 @@ Each repo ships an autonomous bring-up runbook (`AGENTS.md` / `agents.md`) along
 | **[Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash)** | Qwen 3.6 27B AEON Ultimate Uncensored | Dense | **The most-starred release in the catalog.** Lossless abliteration with NVFP4 hardware quantization — **BF16 (51 GB) + NVFP4 (26 GB)** deployment guide, docker-compose, and QuickStart. The production serving path for Qwen 3.6 on Spark. [🤗 weights](https://huggingface.co/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-Multimodal-NVFP4-MTP-XS) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash?style=flat&label=) |
 | **[Qwen3.6-35B-A3B-heretic-NVFP4-DFlash](https://github.com/AEON-7/Qwen3.6-35B-A3B-heretic-NVFP4-DFlash)** | Qwen 3.6 35B-A3B-heretic | MoE | NVFP4 + DFlash speculative decoding on DGX Spark (GB10 / sm_121a). Source-built vLLM image + 7 patches + comprehensive deployment guide. [🤗 weights](https://huggingface.co/AEON-7/Qwen3.6-35B-A3B-heretic-NVFP4) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-35B-A3B-heretic-NVFP4-DFlash?style=flat&label=) |
 | **[Qwen3.6-27B-AEON-Ultimate-Uncensored-DDTree](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DDTree)** | Qwen 3.6 27B AEON Ultimate Uncensored | 🔬 Experimental research track | DDTree-on-vLLM for hybrid-attention Qwen 3.6 — tree verification, branch-state replay, Gated DeltaNet state handling, fused branch attention. Intentionally candid lab notes: what's been tried, what works, what still breaks, and where the next breakthrough likely lives. Use the DFlash repo above for production. | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DDTree?style=flat&label=) |
+| **[Qwen3.6-27B-AEON-Ultimate-Uncensored-MLX](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-MLX)** | Qwen 3.6 27B AEON Ultimate Uncensored | Dense · 🍎 Apple Silicon MLX | **The on-device Mac build.** Native MLX/Metal quants — MLX-8bit (29.5 GB) + MLX-FP4 (16 GB, 24 GB Macs) + a native MTP drafter for up to **1.78x lossless** self-speculation. Selective quant preserves the Gated-DeltaNet SSM, vision tower, and MTP head in BF16. Per-category benchmarks + 0-to-hero quickstart. [🤗 weights](https://huggingface.co/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-Multimodal-MLX-FP4) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-MLX?style=flat&label=) |
 
 ---
 
