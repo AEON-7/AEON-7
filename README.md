@@ -33,6 +33,7 @@ Everything below is **public, MIT/Apache-licensed, and reproducible** — Docker
 | [🐉 Qwen 3.6 Models](#-qwen-36-models) | The flagship line — lossless-abliterated Qwen 3.6 dense + MoE at NVFP4, production DFlash path and the DDTree research track |
 | [🌌 Nemotron Models](#-nemotron-models) | Abliterated multimodal Nemotron 3 reasoning for Blackwell-class hardware |
 | [🔧 Inference and Optimization Tools](#-inference-and-optimization-tools) | The engine room — AEON vLLM Ultimate unified image, DFlash, TurboQuant KV compression, modelopt tooling |
+| [🏆 AEON Bench](#-aeon-bench) | Open, **attested** LLM leaderboard — pull → verify → serve → bench (text · agentic ×3 harnesses · vision · audio · arena · perf) → sign → submit. Live at [aeon-bench.com](https://aeon-bench.com) |
 | [📦 Pre-built Docker Images](#-pre-built-docker-images) | Every public `ghcr.io/aeon-7` container mapped to its repo — `docker pull` and go |
 | [🧪 Apps and Utilities](#-apps-and-utilities) | AI network management, digital gardens, and small sharp tools |
 | [📊 Stats](#-stats) · [☕ Support](#-support-the-work) · [🤝 Contact](#-get-in-touch) | Numbers, tips, and how to reach me |
@@ -188,6 +189,16 @@ Each repo ships an autonomous bring-up runbook (`AGENTS.md` / `agents.md`) along
 | **[turboquant](https://github.com/AEON-7/turboquant)** | Near-optimal KV-cache quantization for LLM inference (3-bit keys, 2-bit values) with Triton kernels + vLLM integration. This fork carries the CUDA-graph-safe QJL `_POWERS` fix that lets TurboQuant boot under CUDA graph capture — bundled into AEON vLLM Ultimate as `--kv-cache-dtype tq_k8v4`. | ![](https://img.shields.io/github/stars/AEON-7/turboquant?style=flat&label=) |
 | **[Model-Optimizer](https://github.com/AEON-7/Model-Optimizer)** | Tracking fork of NVIDIA's unified model-optimization library — quantization, pruning, distillation, speculative decoding — for TensorRT-LLM / TensorRT / vLLM deployment. The quantization workhorse behind every NVFP4 release on this page. | ![](https://img.shields.io/github/stars/AEON-7/Model-Optimizer?style=flat&label=) |
 | **[modelopt-fast-moe](https://github.com/AEON-7/modelopt-fast-moe)** | MoE-targeted quantization + AWQ calibration tooling. NVFP4 routing, expert-aware modelopt. | ![](https://img.shields.io/github/stars/AEON-7/modelopt-fast-moe?style=flat&label=) |
+
+---
+
+## 🏆 AEON Bench
+
+> Open, **attested** LLM benchmarking with a public leaderboard. Pull-and-hash-verify a model from Hugging Face, serve it under a recorded recipe, then run the full suite — text · agentic through **three real harnesses** (Hermes / OpenClaw / OpenCode) · vision · audio · generative arena · performance grid — and ed25519-sign + submit. Every ranked run is **attested**: the mothership independently re-fetches HF and re-verifies every weight hash before it counts. Live at **[aeon-bench.com](https://aeon-bench.com)**.
+
+| Repo | What it does | ★ |
+|---|---|---|
+| **[Aeon-Bench-Pod](https://github.com/AEON-7/Aeon-Bench-Pod)** | Benchmark any local LLM on your own hardware and submit to the global leaderboard. `docker compose up` → pull → hash-verify weights (LFS sha256) → serve (recorded recipe) → bench across all six dimensions incl. the three agent harnesses → ed25519-sign → submit **attested** to [aeon-bench.com](https://aeon-bench.com). Two-command quickstart, device-key enrollment, trust-tiered (attested vs self-reported). | ![](https://img.shields.io/github/stars/AEON-7/Aeon-Bench-Pod?style=flat&label=) |
 
 ---
 
