@@ -33,7 +33,8 @@ Everything below is **public, MIT/Apache-licensed, and reproducible** — Docker
 | [🐉 Qwen 3.6 Models](#-qwen-36-models) | The flagship line — lossless-abliterated Qwen 3.6 dense + MoE at NVFP4, production DFlash path and the DDTree research track |
 | [🌌 Nemotron Models](#-nemotron-models) | Abliterated multimodal Nemotron 3 reasoning for Blackwell-class hardware |
 | [🔧 Inference and Optimization Tools](#-inference-and-optimization-tools) | The engine room — AEON vLLM Ultimate unified image, DFlash, TurboQuant KV compression, modelopt tooling |
-| [🔮 Aeon Magick Orb](#-aeon-magick-orb) | Pocket appliance that gives any AI agent real **eyes + hands** on *any* computer — zero-software KVM-over-IP + on-device Hailo vision, an AI-infra jump box, the Intergalactic Model Share, and the privacy stack. **Pi 4 · Pi 5 · Docker (x86 / ARM)** |
+| [🔮 Aeon Magick Orb](#-aeon-magick-orb) | Pocket Raspberry Pi that gives any AI agent real **eyes + hands** on *any* computer — zero-software KVM-over-IP + on-device Hailo vision. **Pi 4 · Pi 5**. Docker edition: [Magick Orb Docker](#-magick-orb--docker) |
+| [🐳 Magick Orb Docker](#-magick-orb--docker) | Headless Magick Orb for any server — Intergalactic Model Share + Agent Dashboard + MCP. **`docker pull` and go** (`linux/amd64` + `linux/arm64`) |
 | [🏆 AEON Bench](#-aeon-bench) | Open, **attested** LLM leaderboard — pull → verify → serve → bench (text · agentic ×3 harnesses · vision · audio · arena · perf) → sign → submit. Live at [aeon-bench.com](https://aeon-bench.com) |
 | [📦 Pre-built Docker Images](#-pre-built-docker-images) | Every public `ghcr.io/aeon-7` container mapped to its repo — `docker pull` and go |
 | [🧪 Apps and Utilities](#-apps-and-utilities) | AI network management, digital gardens, and small sharp tools |
@@ -195,7 +196,9 @@ Each repo ships an autonomous bring-up runbook (`AGENTS.md` / `agents.md`) along
 
 ## 🔮 Aeon Magick Orb
 
-> A pocket appliance that lets you **see and command any computer — and your entire AI lab.** On a Pi it hands any AI agent a *physical* presence at any machine: real eyes, real hands, **zero software on the target** — to the target it just looks like a USB keyboard + mouse. On a server it is the same console without the HID/KVM hardware: Intergalactic Model Share, Agent Dashboard, MCP + REST. Every capability is a `curl` POST **and** a first-class **MCP** tool, so any model or agent drives the whole rig with no SDK, no plugin, no permission prompt.
+> A pocket-sized Raspberry Pi appliance that lets you **see and command any computer — and your entire AI lab.** It hands any AI agent a *physical* presence at any machine: real eyes, real hands, **zero software on the target** — to the target it just looks like a USB keyboard + mouse. Every capability is a `curl` POST **and** a first-class **MCP** tool, so any model or agent drives the whole rig with no SDK, no plugin, no permission prompt.
+
+Need the console **without** a Pi? **[Magick Orb Docker](#-magick-orb--docker)** — same Model Share + Agent Dashboard, `docker pull` on x86 or ARM.
 
 | | Capability |
 |---|---|
@@ -214,9 +217,34 @@ It isn't just Agentic AI — it's **_Robo_-Agentic AI**: the disembodied, given 
 |---|---|---|
 | **Raspberry Pi 4** | Pi OS **Bookworm** · USB HDMI capture (Cam Link) · hardware H.264 · USB-OTG HID | Full Magick Orb appliance — KVM-over-IP, Model Share, jump box, privacy stack. Longest-tested, lowest-cost path. Flashable image. |
 | **Raspberry Pi 5** | Pi OS **Trixie** · Hailo AI HAT+ · HDMI-to-CSI capture · on-device vision / voice / UPS | Same console as Pi 4, plus Hailo `screen_find` / `describe_screen`, CSI eyes, voice, NVMe-class storage. Flashable image. |
-| **Docker container (x86 / ARM)** | Multi-arch `linux/amd64` + `linux/arm64` — x86 servers, Apple Silicon, DGX Spark | Headless Magick Orb: Intergalactic Model Share, Agent Dashboard, terminals, MCP + REST. No Pi HID / KVM / GPIO. Image `aeon-magick/orb-server:latest` — [`server/`](https://github.com/AEON-7/aeon-magick-ai-computer-control/tree/main/server) · `docker compose up`. |
+| **Docker (x86 / ARM)** | No Pi — see **[Magick Orb Docker](#-magick-orb--docker)** | Headless console on any server. Same Model Share + Agent Dashboard. |
 
-→ **[aeon-magick-ai-computer-control](https://github.com/AEON-7/aeon-magick-ai-computer-control)** · premade **flashable Pi 4 / Pi 5 images** (with a 3D-print enclosure + full build guide **coming soon**) for members on **[Patreon](https://www.patreon.com/AeonForge7/posts/happy-4th-of-162921493)**. Docker: `cd server && ./build.sh && docker compose up -d` — then open `https://localhost:8443/`.
+→ **[aeon-magick-ai-computer-control](https://github.com/AEON-7/aeon-magick-ai-computer-control)** · premade **flashable Pi 4 / Pi 5 images** (with a 3D-print enclosure + full build guide **coming soon**) for members on **[Patreon](https://www.patreon.com/AeonForge7/posts/happy-4th-of-162921493)**.
+
+---
+
+## 🐳 Magick Orb — Docker
+
+> Headless Magick Orb for **any server** — x86, Apple Silicon, DGX Spark. Same Intergalactic Model Share, Agent Dashboard, terminals, MCP + REST. **No Pi, no HID, no HDMI capture.** Public multi-arch image: `linux/amd64` + `linux/arm64`.
+
+### Quick start
+
+```bash
+docker run -d --name aeon-orb --restart unless-stopped \
+  -p 8443:443 -p 8080:8080 \
+  -v aeon-etc:/etc/aeon -v aeon-data:/var/lib/aeon \
+  ghcr.io/aeon-7/orb-server:latest
+```
+
+Open **https://localhost:8443/** — accept the self-signed cert, set an admin password. That's it.
+
+| | |
+|---|---|
+| **Image** | [`ghcr.io/aeon-7/orb-server`](https://github.com/users/AEON-7/packages/container/package/orb-server) · tags `:latest` / `:v116` |
+| **Guide** | **[server/README.md](https://github.com/AEON-7/aeon-magick-ai-computer-control/blob/main/server/README.md)** — compose, volumes, Tailscale, what's included |
+| **Source** | [`aeon-magick-ai-computer-control`](https://github.com/AEON-7/aeon-magick-ai-computer-control) · [`server/`](https://github.com/AEON-7/aeon-magick-ai-computer-control/tree/main/server) |
+
+Want the physical Orb (KVM-over-IP, Hailo vision)? That's the **[Pi card above](#-aeon-magick-orb)**.
 
 ---
 
@@ -236,6 +264,7 @@ It isn't just Agentic AI — it's **_Robo_-Agentic AI**: the disembodied, given 
 
 | Image | What it serves | Docs / source |
 |---|---|---|
+| [`orb-server`](https://github.com/users/AEON-7/packages/container/package/orb-server) | 🔮 **Aeon Magick Orb** — headless Model Share + Agent Dashboard + MCP/REST (`linux/amd64` + `linux/arm64`) | [aeon-magick-ai-computer-control](https://github.com/AEON-7/aeon-magick-ai-computer-control) |
 | [`aeon-vllm-ultimate`](https://github.com/users/AEON-7/packages/container/package/aeon-vllm-ultimate) | ⭐ **The unified flagship** — vLLM 0.24.0 + NVFP4 KV + TurboQuant + DFlash; serves the entire AEON catalog | [vllm-ultimate-dgx-spark](https://github.com/AEON-7/vllm-ultimate-dgx-spark) |
 | [`vllm-ultimate-deepseek-v4-gb10`](https://github.com/users/AEON-7/packages/container/package/vllm-ultimate-deepseek-v4-gb10) | Experimental DeepSeek-V4 / DSpark GB10 image — PR #4 enablement path for TP=2 research and distributed Blackwell validation | [vllm-ultimate-deepseek-v4-gb10](https://github.com/AEON-7/vllm-ultimate-deepseek-v4-gb10) |
 | [`vllm-aeon-ultimate-dflash`](https://github.com/users/AEON-7/packages/container/package/vllm-aeon-ultimate-dflash) | Qwen 3.6 27B AEON Ultimate — production DFlash serving | [Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash) |
