@@ -238,11 +238,9 @@ docker run -d --name aeon-orb --restart unless-stopped \
 
 Open **https://localhost:8443/** — accept the self-signed cert, set an admin password. That's it.
 
-| | |
-|---|---|
-| **Image** | [`ghcr.io/aeon-7/orb-server`](https://github.com/users/AEON-7/packages/container/package/orb-server) · tags `:latest` / `:v116` |
-| **Guide** | **[server/README.md](https://github.com/AEON-7/aeon-magick-ai-computer-control/blob/main/server/README.md)** — compose, volumes, Tailscale, what's included |
-| **Source** | [`aeon-magick-ai-computer-control`](https://github.com/AEON-7/aeon-magick-ai-computer-control) · [`server/`](https://github.com/AEON-7/aeon-magick-ai-computer-control/tree/main/server) |
+| Repo | What it does | ★ |
+|---|---|---|
+| **[orb-server](https://github.com/AEON-7/orb-server)** | Docker Magick Orb — one `docker pull`, Model Share + Agent Dashboard + MCP. Image [`ghcr.io/aeon-7/orb-server`](https://github.com/users/AEON-7/packages/container/package/orb-server). | ![](https://img.shields.io/github/stars/AEON-7/orb-server?style=flat&label=) |
 
 Want the physical Orb (KVM-over-IP, Hailo vision)? That's the **[Pi card above](#-aeon-magick-orb)**.
 
@@ -264,7 +262,7 @@ Want the physical Orb (KVM-over-IP, Hailo vision)? That's the **[Pi card above](
 
 | Image | What it serves | Docs / source |
 |---|---|---|
-| [`orb-server`](https://github.com/users/AEON-7/packages/container/package/orb-server) | 🔮 **Aeon Magick Orb** — headless Model Share + Agent Dashboard + MCP/REST (`linux/amd64` + `linux/arm64`) | [aeon-magick-ai-computer-control](https://github.com/AEON-7/aeon-magick-ai-computer-control) |
+| [`orb-server`](https://github.com/users/AEON-7/packages/container/package/orb-server) | 🔮 **Aeon Magick Orb** — headless Model Share + Agent Dashboard + MCP/REST (`linux/amd64` + `linux/arm64`) | [orb-server](https://github.com/AEON-7/orb-server) |
 | [`aeon-vllm-ultimate`](https://github.com/users/AEON-7/packages/container/package/aeon-vllm-ultimate) | ⭐ **The unified flagship** — vLLM 0.24.0 + NVFP4 KV + TurboQuant + DFlash; serves the entire AEON catalog | [vllm-ultimate-dgx-spark](https://github.com/AEON-7/vllm-ultimate-dgx-spark) |
 | [`vllm-ultimate-deepseek-v4-gb10`](https://github.com/users/AEON-7/packages/container/package/vllm-ultimate-deepseek-v4-gb10) | Experimental DeepSeek-V4 / DSpark GB10 image — PR #4 enablement path for TP=2 research and distributed Blackwell validation | [vllm-ultimate-deepseek-v4-gb10](https://github.com/AEON-7/vllm-ultimate-deepseek-v4-gb10) |
 | [`vllm-aeon-ultimate-dflash`](https://github.com/users/AEON-7/packages/container/package/vllm-aeon-ultimate-dflash) | Qwen 3.6 27B AEON Ultimate — production DFlash serving | [Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash) |
