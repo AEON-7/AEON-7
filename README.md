@@ -30,7 +30,8 @@ Everything below is **public, MIT/Apache-licensed, and reproducible** — Docker
 | [🎤 Voice and Video AI Stack](#-voice-and-video-ai-stack) | Real-time speech and vision on one DGX Spark — OpenAI-compatible streaming TTS + ASR servers, Matrix VoIP bridge with camera-frame vision for video calls, AI persona builder. **Agent starts speaking ~1.0 s into a turn** |
 | [💎 Gemma 4 Models](#-gemma-4-models) | Abliterated Gemma 4 NVFP4 quantizations, EAGLE drafters, and a 3.5×-faster DFlash serving container |
 | [🍎 Apple Silicon MLX](#-apple-silicon-mlx) | Gemma-4-12B AEON Abliterated on M-series Macs — MLX quants + one-paste OpenAI-compatible multimodal server |
-| [🐉 Qwen 3.6 Models](#-qwen-36-models) | The flagship line — lossless-abliterated Qwen 3.6 dense + MoE at NVFP4, production DFlash path and the DDTree research track |
+| [🐉 Qwen 3.8 Models](#-qwen-38-models) | Current flagship dense — Qwen 3.8 Ultimate Uncensored BF16 + NVFP4-MIXED, Dynamic DFlash Perf lattice on Spark |
+| [🐉 Qwen 3.6 Models](#-qwen-36-models) | Prior flagship line — lossless-abliterated Qwen 3.6 dense + MoE at NVFP4; prefer Qwen 3.8 MIXED for new work |
 | [🌌 Nemotron Models](#-nemotron-models) | Abliterated multimodal Nemotron 3 reasoning for Blackwell-class hardware |
 | [🔧 Inference and Optimization Tools](#-inference-and-optimization-tools) | The engine room — AEON vLLM Ultimate unified image, DFlash, TurboQuant KV compression, modelopt tooling |
 | [🔮 Aeon Magick Orb](#-aeon-magick-orb) | Pocket Raspberry Pi that gives any AI agent real **eyes + hands** on *any* computer — zero-software KVM-over-IP + on-device Hailo vision. **Pi 4 · Pi 5**. Docker edition: [Magick Orb Docker](#-magick-orb--docker) |
@@ -156,13 +157,21 @@ Each repo ships an autonomous bring-up runbook (`AGENTS.md` / `agents.md`) along
 
 ---
 
-## 🐉 Qwen 3.6 Models
+## 🐉 Qwen 3.8 Models
 
-> The flagship line. Lossless abliteration of Qwen 3.6 with hardware NVFP4 quantization — dense 27B and 35B MoE — combined with DFlash speculative decoding for serious single-stream throughput on DGX Spark, plus an open research track pushing speculative decoding for hybrid-attention models forward.
+> Current flagship dense line. Coherent abliteration of Qwen 3.8 with a ModelOpt **NVFP4-MIXED** deploy lattice (last-8 full MLP FP8) and seat-specific speculative decode -- everyday Spark **DFlash2 n=7**, Perf **Dynamic DFlash lattice**, RTX **MTP n=3**.
 
 | Repo | Model | Architecture | Description | ★ |
 |---|---|---|---|---|
-| **[Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash)** | Qwen 3.6 27B AEON Ultimate Uncensored | Dense | **The most-starred release in the catalog.** Lossless abliteration with NVFP4 hardware quantization — **BF16 (51 GB) + NVFP4 (26 GB)** deployment guide, docker-compose, and QuickStart. The production serving path for Qwen 3.6 on Spark. [🤗 weights](https://huggingface.co/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-Multimodal-NVFP4-MTP-XS) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash?style=flat&label=) |
+| **[Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED](https://github.com/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED)** | Qwen 3.8 27B AEON Ultimate Uncensored | Dense | **Public recipe card** -- QuickStarts for single Spark (quality + Dynamic DFlash Perf lattice), dual-Spark TP=2, RTX 5090 / PRO 6000. [🤗 BF16](https://huggingface.co/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-BF16) · [🤗 NVFP4-MIXED](https://huggingface.co/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-NVFP4-MIXED) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED?style=flat&label=) |
+
+## 🐉 Qwen 3.6 Models
+
+> Prior flagship line (prefer [Qwen 3.8](#-qwen-38-models) for new deploys). Lossless abliteration of Qwen 3.6 with hardware NVFP4 quantization — dense 27B and 35B MoE — combined with DFlash speculative decoding for serious single-stream throughput on DGX Spark, plus an open research track pushing speculative decoding for hybrid-attention models forward.
+
+| Repo | Model | Architecture | Description | ★ |
+|---|---|---|---|---|
+| **[Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash)** | Qwen 3.6 27B AEON Ultimate Uncensored | Dense | **Superseded for new deploys by [Qwen3.8](https://github.com/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED).** Still the most-starred 3.6 release. Lossless abliteration with NVFP4 hardware quantization — **BF16 (51 GB) + NVFP4 (26 GB)** deployment guide, docker-compose, and QuickStart. The production serving path for Qwen 3.6 on Spark. [🤗 weights](https://huggingface.co/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-Multimodal-NVFP4-MTP-XS) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DFlash?style=flat&label=) |
 | **[Qwen3.6-35B-A3B-heretic-NVFP4-DFlash](https://github.com/AEON-7/Qwen3.6-35B-A3B-heretic-NVFP4-DFlash)** | Qwen 3.6 35B-A3B-heretic | MoE | NVFP4 + DFlash speculative decoding on DGX Spark (GB10 / sm_121a). Source-built vLLM image + 7 patches + comprehensive deployment guide. [🤗 weights](https://huggingface.co/AEON-7/Qwen3.6-35B-A3B-heretic-NVFP4) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-35B-A3B-heretic-NVFP4-DFlash?style=flat&label=) |
 | **[Ornith-1.0-35B-AEON-Ultimate-Uncensored](https://github.com/AEON-7/Ornith-1.0-35B-AEON-Ultimate-Uncensored)** | Ornith 1.0 35B · Qwen 3.6 35B-A3B base | MoE · coding/agentic | Lossless uncensoring of DeepReinforce's SOTA agentic-coding MoE (Terminal-Bench 64.2, SWE-bench 75.6) — **0/80 refusals, 0 coding loss** (agentic pass@1 0.833 = base). **BF16 (66 GB) + NVFP4 (24 GB)**; the Qwen 3.6 35B-A3B DFlash drafter drops in for **~1.9× single-stream** (74 tok/s) on DGX Spark — measured 3-way benchmark (quant + DFlash) + Spark QuickStart included. [🤗 BF16](https://huggingface.co/AEON-7/Ornith-1.0-35B-AEON-Ultimate-Uncensored-BF16) · [🤗 NVFP4](https://huggingface.co/AEON-7/Ornith-1.0-35B-AEON-Ultimate-Uncensored-NVFP4) | ![](https://img.shields.io/github/stars/AEON-7/Ornith-1.0-35B-AEON-Ultimate-Uncensored?style=flat&label=) |
 | **[Qwen3.6-27B-AEON-Ultimate-Uncensored-DDTree](https://github.com/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DDTree)** | Qwen 3.6 27B AEON Ultimate Uncensored | 🔬 Experimental research track | DDTree-on-vLLM for hybrid-attention Qwen 3.6 — tree verification, branch-state replay, Gated DeltaNet state handling, fused branch attention. Intentionally candid lab notes: what's been tried, what works, what still breaks, and where the next breakthrough likely lives. Use the DFlash repo above for production. | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.6-27B-AEON-Ultimate-Uncensored-DDTree?style=flat&label=) |
