@@ -30,7 +30,7 @@ Everything below is **public, MIT/Apache-licensed, and reproducible** — Docker
 | [🎤 Voice and Video AI Stack](#-voice-and-video-ai-stack) | Real-time speech and vision on one DGX Spark — OpenAI-compatible streaming TTS + ASR servers, Matrix VoIP bridge with camera-frame vision for video calls, AI persona builder. **Agent starts speaking ~1.0 s into a turn** |
 | [💎 Gemma 4 Models](#-gemma-4-models) | Abliterated Gemma 4 NVFP4 quantizations, EAGLE drafters, and a 3.5×-faster DFlash serving container |
 | [🍎 Apple Silicon MLX](#-apple-silicon-mlx) | Gemma-4-12B AEON Abliterated on M-series Macs — MLX quants + one-paste OpenAI-compatible multimodal server |
-| [🐉 Qwen 3.8 Models](#-qwen-38-models) | Current flagship dense — Qwen 3.8 Ultimate Uncensored BF16 + NVFP4-MIXED, Dynamic DFlash Perf lattice on Spark |
+| [🐉 Qwen 3.8 Models](#-qwen-38-models) | Current flagship dense — Qwen 3.8 Ultimate Uncensored BF16 + NVFP4-MIXED, one Spark Dynamic DFlash lattice seat on Spark |
 | [🐉 Qwen 3.6 Models](#-qwen-36-models) | Prior flagship line — lossless-abliterated Qwen 3.6 dense + MoE at NVFP4; prefer Qwen 3.8 MIXED for new work |
 | [🌌 Nemotron Models](#-nemotron-models) | Abliterated multimodal Nemotron 3 reasoning for Blackwell-class hardware |
 | [🔧 Inference and Optimization Tools](#-inference-and-optimization-tools) | The engine room — AEON vLLM Ultimate unified image, DFlash, TurboQuant KV compression, modelopt tooling |
@@ -159,11 +159,11 @@ Each repo ships an autonomous bring-up runbook (`AGENTS.md` / `agents.md`) along
 
 ## 🐉 Qwen 3.8 Models
 
-> Current flagship dense line. Coherent abliteration of Qwen 3.8 with a ModelOpt **NVFP4-MIXED** deploy lattice (last-8 full MLP FP8) and seat-specific speculative decode -- everyday Spark **DFlash2 n=7**, Perf **Dynamic DFlash lattice**, RTX **MTP n=3**.
+> Current flagship dense line. Coherent abliteration of Qwen 3.8 with a ModelOpt **NVFP4-MIXED** deploy lattice (last-8 full MLP FP8) and seat-specific speculative decode -- single Spark **Dynamic DFlash lattice** (util **0.80**; quality + throughput), TP=2 **DFlash2 n=7**, RTX **MTP n=3**.
 
 | Repo | Model | Architecture | Description | ★ |
 |---|---|---|---|---|
-| **[Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED](https://github.com/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED)** | Qwen 3.8 27B AEON Ultimate Uncensored | Dense | **Public recipe card** -- QuickStarts for single Spark (quality + Dynamic DFlash Perf lattice), dual-Spark TP=2, RTX 5090 / PRO 6000. [🤗 BF16](https://huggingface.co/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-BF16) · [🤗 NVFP4-MIXED](https://huggingface.co/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-NVFP4-MIXED) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED?style=flat&label=) |
+| **[Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED](https://github.com/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED)** | Qwen 3.8 27B AEON Ultimate Uncensored | Dense | **Public recipe card** -- QuickStarts for single Spark (Dynamic DFlash lattice @ util 0.80), dual-Spark TP=2, RTX 5090 / PRO 6000. [🤗 BF16](https://huggingface.co/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-BF16) · [🤗 NVFP4-MIXED](https://huggingface.co/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-NVFP4-MIXED) | ![](https://img.shields.io/github/stars/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED?style=flat&label=) |
 
 ## 🐉 Qwen 3.6 Models
 
