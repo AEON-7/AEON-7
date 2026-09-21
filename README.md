@@ -241,11 +241,12 @@ It isn't just Agentic AI — it's **_Robo_-Agentic AI**: the disembodied, given 
 ```bash
 docker run -d --name aeon-orb --restart unless-stopped \
   -p 8443:443 -p 8080:8080 \
+  -p 4001:4001 -p 4001:4001/udp \
   -v aeon-etc:/etc/aeon -v aeon-data:/var/lib/aeon \
   ghcr.io/aeon-7/orb-server:latest
 ```
 
-Open **https://localhost:8443/** — accept the self-signed cert, set an admin password. That's it.
+Open **https://localhost:8443/** — accept the self-signed cert, set an admin password. That's it. Publish **4001** so other Magick Orbs can hole-punch for Model Share (WAN discovery uses the Amino DHT; no LAN IP needed).
 
 | Repo | What it does | ★ |
 |---|---|---|
