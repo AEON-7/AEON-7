@@ -1,6 +1,6 @@
 <div align="center">
 
-[![Tips](https://img.shields.io/badge/%E2%98%95_Tips-Support_the_work-ff5e5b?style=flat)](#-support-the-work)
+[![Tips](https://img.shields.io/badge/%E2%98%95_Tips-Support_the_work-ff5e5b?style=flat)](#-support-the-work) [![Buy me a lotus tea on LotusMake](https://lotusmake.com/badges/lotus-tea-dark.v1.svg)](https://lotusmake.com/support?via=tea)
 
 # AEON-7
 
@@ -228,7 +228,7 @@ It isn't just Agentic AI — it's **_Robo_-Agentic AI**: the disembodied, given 
 | **Raspberry Pi 5** | Pi OS **Trixie** · Hailo AI HAT+ · HDMI-to-CSI capture · on-device vision / voice / UPS | Same console as Pi 4, plus Hailo `screen_find` / `describe_screen`, CSI eyes, voice, NVMe-class storage. Flashable image. |
 | **Docker (x86 / ARM)** | No Pi — see **[Magick Orb Docker](#-magick-orb--docker)** | Headless console on any server. Same Model Share + Agent Dashboard. |
 
-→ **[aeon-magick-ai-computer-control](https://github.com/AEON-7/aeon-magick-ai-computer-control)** · premade **flashable Pi 4 / Pi 5 images** (with a 3D-print enclosure + full build guide **coming soon**) for members on **[Patreon](https://www.patreon.com/AeonForge7/posts/happy-4th-of-162921493)**.
+→ **[aeon-magick-ai-computer-control](https://github.com/AEON-7/aeon-magick-ai-computer-control)** · premade **flashable Pi 4 / Pi 5 images** (with a 3D-print enclosure + full build guide **coming soon**) for members on **[LotusMake](https://lotusmake.com/c/aeon-forge)**.
 
 ---
 
@@ -319,11 +319,15 @@ Want the physical Orb (KVM-over-IP, Hailo vision)? That's the **[Pi card above](
 
 ## ☕ Support the work
 
-AEON-7 models, drafters and tools are built and trained independently, on my own hardware. If they're useful to you, please consider supporting development:
+AEON-7 models, drafters and tools are built and trained independently, on my own hardware. If they're useful to you, please consider supporting development.
 
-**[Become a member on Patreon → patreon.com/cw/AeonForge7/membership](https://www.patreon.com/cw/AeonForge7/membership)**
+Patreon wrongfully shut down our account without notice and never responded to our appeals, so we built something even better. You can now support the work on **LotusMake**: buy us a Lotus Tea, fund GPU hours, back a project you want to see done, or subscribe for early and full access to publications while supporting what we build. You can become a creator there too: join, apply to become a creator, and get paid for the work you do in public.
 
-Milestones unlock bigger work: reaching **500 paid supporters** will fund fine-tuning larger models and bigger project releases. Supporters also get early access to new releases, such as the [AEON DFlash2 drafter](https://www.patreon.com/AeonForge7/posts/early-access-for-171543895).
+[![Buy me a lotus tea on LotusMake](https://lotusmake.com/badges/lotus-tea-dark.v1.svg)](https://lotusmake.com/support?via=tea)
+
+**[AEON FORGE on LotusMake → lotusmake.com/c/aeon-forge](https://lotusmake.com/c/aeon-forge)** · **[Subscribe for early and full access](https://lotusmake.com/support?mode=tiers&from=%2Fc%2Faeon-forge)**
+
+Milestones unlock bigger work: reaching **500 paid supporters** will fund fine-tuning larger models and bigger project releases. Subscribers also get early access to new releases, such as the [AEON DFlash2 drafter](https://huggingface.co/AEON-7/AEON-DFlash2-Qwen3.8-27B).
 
 If any of these releases have been useful to you, tips are deeply appreciated — they go directly toward more compute, more models, and more open releases. **Scan a QR with your wallet, or click any address below to copy.**
 
