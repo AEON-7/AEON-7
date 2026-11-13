@@ -1,6 +1,7 @@
 <div align="center">
 
 [![Tips](https://img.shields.io/badge/%E2%98%95_Tips-Support_the_work-ff5e5b?style=flat)](#-support-the-work) 
+### Support me on LotusMake or become a LotusMake Creator
 [![Buy me a coffee on LotusMake](https://lotusmake.com/badges/coffee-light.v2.svg)](https://lotusmake.com/support) [![Subscribe on lotusmake.com](https://lotusmake.com/badges/subscribe-light.v2.svg)](https://lotusmake.com/support?mode=tiers)
 
 # AEON-7
